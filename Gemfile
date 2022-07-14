@@ -49,3 +49,10 @@ gem 'omniauth', '~> 1.6'
 gem 'paperclip', '~> 5.1.0'
 gem 'geocoder', '~> 1.5.0'
 gem 'stripe', '~> 3.0.0'
+
+gem 'figaro', '~> 1.1', '>=1.1.1'
+# Help view jason api
+gem 'active_model_serializers', '~> 0.10.0', require: true  
+# Facebook library "used here, to fetch data from facebook"  
+# https://github.com/arsduo/koala
+gem 'koala', '~> 3.0.0' 
