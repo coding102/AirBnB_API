@@ -12,24 +12,23 @@ class Api::V1::UsersController < ApplicationController
                     user.generate_authentication_token
                     user.save
                     render json: user, status: :ok
-               end
-          # if user is not in the database with email user_data, it's a new user
-          else
-               user = User.new(
-                         fullname: user_data["fullname"]),
-                         email: user_data["email"],
-                         uid: user_data["id"],
-                         provider: "Facebook",
-                         image: user_data["picture"]["data"],["url"]
-                      )
-               user.generate_authentication_token
-
-               if user.save
-                    render json: user, status: :ok
+               # if user is not in the database with email user_data, it's a new user
                else
-                    render json: { error: user.errors, is_success: false }, status: 422
+                    user = User.new(
+                              fullname: user_data["fullname"],
+                              email: user_data["email"],
+                              uid: user_data["id"],
+                              provider: "Facebook",
+                              image: user_data["picture"]["data"]["url"]
+                         )
+                    user.generate_authentication_token
+
+                    if user.save
+                         render json: user, status: :ok
+                    else
+                         render json: { error: user.errors, is_success: false }, status: 422
+                    end
                end
-          end
           else
                render json: { error: "Invalid Facebook Token", is_success: false }, status: :unprocessable_entity
           end

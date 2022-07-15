@@ -4,7 +4,7 @@ Rails.application.routes.draw do
      namespace :api, dafaults: {format: :json} do
           namespace :v1 do
                get '/logout' => 'users#logout'
-               post '/fabook' => 'users#facebook'
+               post '/facebook' => 'users#facebook'
           end
      end
 
